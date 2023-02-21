@@ -16,6 +16,9 @@ public class MicrosoftAuthController: ControllerBase
   [HttpGet]
   public async Task<IActionResult> GetTest()
   {
+    AppDomain.CurrentDomain.UnhandledException += (sender, e)
+      => Console.WriteLine(e.ExceptionObject.ToString());
+
     await _testTaskRun.Run();
     return Ok();
   }
